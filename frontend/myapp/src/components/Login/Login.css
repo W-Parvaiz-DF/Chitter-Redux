@@ -1,0 +1,33 @@
+.logo {
+    margin-top: 200px;
+    width: 400px;
+    height: 300px;
+}
+
+.loginFull {
+    margin: 50px
+}
+
+.loginRight {
+
+
+    border-left: 6px solid green;
+    height: 750px;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    margin-bottom: 80px;
+
+}
+
+.loginRightContent {
+
+    margin-left: 20px;
+
+}
+
+form {
+
+    margin-top: 200px;
+
+}
