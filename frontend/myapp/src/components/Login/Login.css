@@ -1,7 +1,7 @@
 .logo {
-    margin-top: 200px;
-    width: 400px;
-    height: 300px;
+    margin-top: 30%;
+    width: 75%;
+    height: 50%;
 }
 
 .loginFull {
@@ -12,22 +12,23 @@
 
 
     border-left: 6px solid green;
-    height: 750px;
+    height: 75%;
     position: absolute;
     left: 50%;
     margin-left: -3px;
-    margin-bottom: 80px;
+    margin-bottom: 25%;
+    ;
 
 }
 
 .loginRightContent {
 
-    margin-left: 20px;
+    margin-left: 10%;
 
 }
 
 form {
 
-    margin-top: 200px;
+    margin-top: 50%;
 
 }

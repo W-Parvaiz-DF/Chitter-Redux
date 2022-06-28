@@ -19,7 +19,14 @@ footer {
 .footer-copyright {
 
     float: left;
-    margin-left: 200px;
-    padding-right: -50px;
+    margin-left: 20%;
+    margin-top: 1.8%;
 
+}
+
+.footer-icons {
+
+    float: right;
+    margin-right: 15%;
+    margin-top: 1%;
 }
