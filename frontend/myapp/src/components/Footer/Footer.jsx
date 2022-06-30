@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <>
             <meta name="viewpoint" content="width=device-width, initial-scale=1"></meta>
-            <footer className="page-footer text-white row text-center">
+            <footer className="page-footer text-white text-center col-4 col-sm-6 col-md-8 col-lg-12">
                 <div className='footer-content'>
                     <p className="footer-copyright"> &copy; Chitter 2022</p>
                     <div className="footer-icons ">

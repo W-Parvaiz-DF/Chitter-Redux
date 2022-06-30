@@ -1,10 +1,12 @@
 import logo from '../../images/chitterlogo.jpg'
 import './Login.css'
 
+// might need to add this somewhere col-4 col-sm-6 col-md-8 col-lg-12
+
 const Login = () => {
     return (
         <><meta name="viewport" content="width=device-width,  initial-scale=1.0"></meta>
-            <div className="row text-center loginFull">
+            <div className=" text-center loginFull">
                 <div className="col-5">
                     <h1> Welcome to Chitter!</h1>
                     <img alt="Chitter logo" src={logo} className="logo"></img>

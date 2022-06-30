@@ -7,13 +7,14 @@ import Home from './components/Home';
 
 function App() {
   return (
-    <div className="App container-fluid">
+    <div className="App container-fluid ">
+      <div className='row'>
 
+        {/* <Login /> */}
+        <Home />
+        <Footer />
 
-      {/* <Login /> */}
-      <Home />
-      <Footer />
-
+      </div>
 
 
     </div>
