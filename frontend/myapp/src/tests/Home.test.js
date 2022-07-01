@@ -95,4 +95,14 @@ describe('tests for the Home component', () => {
 
     })
 
+    it('should render a loading message when before the request has been made', async () => {
+
+        render(<Home />)
+
+        const result = await screen.findByText("Loading Peeps...")
+
+        expect(result).toBeInTheDocument()
+
+    })
+
 })
