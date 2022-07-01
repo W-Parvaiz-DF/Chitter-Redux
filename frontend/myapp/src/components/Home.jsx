@@ -2,11 +2,12 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Peeps from './Peeps';
 import './Home.css'
+import PeepsNotFound from './PeepsNotFound';
 
 const Home = () => {
 
     const [peeps, setPeeps] = useState([]);
-    const [err, setErr] = useState([null]);
+    const [err, setErr] = useState(null);
 
     const getPeeps = async () => {
         try {
@@ -36,10 +37,18 @@ const Home = () => {
 
     return (
         <>
-            <div className="chatPage text-center bg-primary col-4 col-sm-6 col-md-8 col-lg-12">
-                <h1 className="text-white" >Hey, User! Ready to chat? </h1>
+            <div className="chatPage text-center bg-primary col-4 col-sm-6 col-md-8 col-lg-12" key="HomepageDive">
+                <h1 className="text-white" >Hey, Guest! Ready to chat? </h1>
 
-                {peepsComponents}
+
+
+                {err?.response.status && <h3>There was a {`${err.response.status}`} error: {`${err.response.statusText}`}</h3>}
+                {/*For when there isn't a network error but there is no data*/}
+
+                {!err?.response.status && err?.message && <PeepsNotFound message={err.message} />}
+                {/* ^This is for a network error  */}
+
+                {peeps.length > 0 && peepsComponents}
 
                 <form >
                     <div className="form-group comment-form ">
