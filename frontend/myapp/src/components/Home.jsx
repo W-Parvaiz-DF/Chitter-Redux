@@ -3,16 +3,24 @@ import { useState, useEffect } from 'react';
 import Peeps from './Peeps';
 import './Home.css'
 import PeepsNotFound from './PeepsNotFound';
+import PeepModel from '../utils/PeepModel';
 
 const Home = () => {
+
+    const user = "CurrentUser" //just a placeholder until we get a login system
+
+
+    const [newText, setNewText] = useState('');
+    const [postedStatus, setPostedStatus] = useState(false)
+
 
     const [peeps, setPeeps] = useState([]);
     const [err, setErr] = useState(null);
 
     const getPeeps = async () => {
+
         try {
             const res = await axios.get('http://localhost:4000');
-            console.log(res?.data)
             setPeeps(res?.data);
             console.log(peeps)
         }
@@ -23,11 +31,37 @@ const Home = () => {
         }
     }
 
+
     useEffect(() => {
+
 
         getPeeps();
 
-    }, [])
+    }, [postedStatus])
+
+
+    const handleChange = e => {
+
+        setNewText(e.target.value)
+        setPostedStatus(false)
+
+    }
+
+    const postPeep = async e => {
+
+        e.preventDefault();
+
+        const postPeep = new PeepModel(user, new Date(Date.now()), newText);
+        const res = await axios.post(`http://localhost:4000`, postPeep);
+
+        alert(res.data.message); //alerts are so 2002 will replace with a modal when I get the basics done
+
+        setNewText('');
+        setPostedStatus(true);
+
+    }
+
+
 
     let peepsComponents;
 
@@ -50,25 +84,22 @@ const Home = () => {
                 {/*For when there isn't a network error but there is no data*/}
 
                 {err?.message && !err?.response?.status && <PeepsNotFound message={err.message} />}
-                {/*  */}
+
                 {/* ^This is for a network error  */}
                 {peeps?.length > 0 && peepsComponents}
 
-                <form >
+                <form onSubmit={postPeep}>
                     <div className="form-group comment-form ">
-                        <textarea className="form-control border border-danger rounded border-4 " id="chitterBox" placeholder="Post something to the World!" rows="5"></textarea>
+
+                        <textarea className="form-control border border-danger rounded border-4 "
+                            id="chitterBox" placeholder="Post something to the World!" rows="5"
+                            required onChange={handleChange} value={newText}></textarea>
+
                         <button type="submit" className="btn btn-danger">Submit</button>
                     </div>
-
                 </form>
-
             </div>
-
         </>
-
-
-
-
     )
 }
 

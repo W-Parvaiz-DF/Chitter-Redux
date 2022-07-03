@@ -13,3 +13,16 @@ router.route('/')
 
 
     })
+
+    .post((req, res) => {
+
+        const peep = new Peep(req.body)
+        console.log(peep)
+        peep.save()
+            .then(peep => {
+                res.status(201).send({ 'message': 'Peep sent!' });
+            })
+            .catch(err => res.send({ 'message': 'Peep could not be sent' }));
+
+    })
+
