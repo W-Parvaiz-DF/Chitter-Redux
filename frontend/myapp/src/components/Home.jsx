@@ -4,6 +4,7 @@ import Peeps from './Peeps';
 import './Home.css'
 import PeepsNotFound from './PeepsNotFound';
 import PeepModel from '../utils/PeepModel';
+import PostedModal from './PostedModal';
 
 const Home = () => {
 
@@ -13,7 +14,8 @@ const Home = () => {
     const [newText, setNewText] = useState('');
     const [postedStatus, setPostedStatus] = useState(false)
 
-
+    //const [modalState, setModalState] = useState(false)
+    const [message, setMessage] = useState("");
     const [peeps, setPeeps] = useState([]);
     const [err, setErr] = useState(null);
 
@@ -47,6 +49,7 @@ const Home = () => {
 
     }
 
+
     const postPeep = async e => {
 
         e.preventDefault();
@@ -54,13 +57,12 @@ const Home = () => {
         const postPeep = new PeepModel(user, new Date(Date.now()), newText);
         const res = await axios.post(`http://localhost:4000`, postPeep);
 
-        alert(res.data.message); //alerts are so 2002 will replace with a modal when I get the basics done
-
-        setNewText('');
+        setMessage(res.data.message);
+        // alert(res.data.message); 
         setPostedStatus(true);
+        setNewText('')
 
     }
-
 
 
     let peepsComponents;
@@ -95,9 +97,18 @@ const Home = () => {
                             id="chitterBox" placeholder="Post something to the World!" rows="5"
                             required onChange={handleChange} value={newText}></textarea>
 
-                        <button type="submit" className="btn btn-danger">Submit</button>
+                        <button type="submit" className="btn btn-danger" id="postBtn">Submit</button>
+
+
+
                     </div>
+
                 </form>
+
+                {postedStatus && <PostedModal message={message} handleClose={() => setMessage('')} />}
+
+
+
             </div>
         </>
     )

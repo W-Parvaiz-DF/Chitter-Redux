@@ -69,14 +69,90 @@ describe("Server test relating to Peeps", () => {
 
     describe('Post request tests for peeps', () => {
 
-        it('should ', () => { second })
+        it('should make a successful /POST request and send a success message  ', async () => {
+
+            const postData = {
+                username: 'Tester',
+                date: new Date(Date.now()),
+                text: "Test peep text"
+
+            }
+
+            const res = await chai.request(server)
+                .post('/')
+                .send(postData)
+
+            expect(res).to.have.status(201);
+            expect(res.body).to.be.an('object');
+            expect(res.body).to.have.property('message').eql('Peep sent!');
 
 
 
+        })
+
+        it('should send an error message if the post request sends incorrect text data ', async () => {
+
+            const postData = {
+                username: 'Tester',
+                date: new Date(Date.now()),
+                text: ""
+
+            }
+
+            const res = await chai.request(server)
+                .post('/')
+                .send(postData)
 
 
+            expect(res.body).to.be.an('object');
+            expect(res.body).to.have.property('message').eql('Peep could not be sent');
+
+
+        })
+
+
+        it('should send an error message if the post request sends non-existing username data ', async () => {
+
+            //for some reason username can be a nonstring? need to brush up on express validator
+            const postData = {
+                date: new Date(Date.now()),
+                text: "hello"
+
+            }
+
+            const res = await chai.request(server)
+                .post('/')
+                .send(postData)
+
+
+            expect(res.body).to.be.an('object');
+            expect(res.body).to.have.property('message').eql('Peep could not be sent');
+
+
+        })
+
+        it('should send an error message if the post request sends incorrect date data ', async () => {
+
+            const postData = {
+                username: "Tester",
+                date: "Not a valid date",
+                text: "hello"
+
+            }
+
+            const res = await chai.request(server)
+                .post('/')
+                .send(postData)
+
+
+            expect(res.body).to.be.an('object');
+            expect(res.body).to.have.property('message').eql('Peep could not be sent');
+
+
+        })
 
     })
+
 
 
 

@@ -1,6 +1,6 @@
 import express from 'express';
 import Peep from '../models/peepSchema.js';
-
+import { body } from 'express-validator'
 
 export const router = express.Router();
 
@@ -14,7 +14,14 @@ router.route('/')
 
     })
 
-    .post((req, res) => {
+    .post([
+        body('username').isString().exists().isLength({ min: 1 }),
+        body('date').exists().isDate(),
+        body('text').exists().isString().isLength({ min: 1 })
+
+    ], (req, res) => {
+
+
 
         const peep = new Peep(req.body)
         console.log(peep)
@@ -25,4 +32,5 @@ router.route('/')
             .catch(err => res.send({ 'message': 'Peep could not be sent' }));
 
     })
+
 

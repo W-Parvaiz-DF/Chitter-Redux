@@ -1,7 +1,9 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
+import morgan from 'morgan';
 import cors from 'cors';
+
 
 import { router as peepRouter } from './routes/peeps.js';
 
@@ -9,7 +11,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
 const app = express();
 const port = process.env.PORT
-
+app.use(morgan('tiny'))
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
