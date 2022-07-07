@@ -1,6 +1,17 @@
 # Chitter-Redux
 
-Notes:
-So far basic html and design of the login page is complete (just getting back into the swing of things, will make it better and a lot prettier later)
-Next create HTML and basic design of the chat page and profile page
-Then create mongoDB and start work on the back-end just for the chat page
+## Done list:
+-created login page html/css
+- created home page html/css
+- created get/post backend 
+- express validation on posted data
+- created peeps as cards which appear as posted
+- created modal which gives update whether peep was posted successfully 
+- created scroll bar so peeps don't take up the entire page
+
+## Current To-do list: 
+
+- Need to fix the css/bootstrap responsiveness because components squash together when the screen is not full size
+- Add front-end validation to the front-end peeps
+- Start login and authentication using JWT tokens and Bcrypt (next)
+- Create register page and add authentication to it (next)

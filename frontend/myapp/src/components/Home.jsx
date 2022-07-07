@@ -80,16 +80,20 @@ const Home = () => {
             <div className="chatPage text-center bg-primary col-4 col-sm-6 col-md-8 col-lg-12" key="HomepageDive">
                 <h1 className="text-white" >Hey, Guest! Ready to chat? </h1>
 
-                {!peeps && !err && <h3>Loading Peeps...</h3>}
+                <div className='container vertical-scrollable'>
+                    <div className='row text-center'>
+                        {!peeps && !err && <h3>Loading Peeps...</h3>}
 
-                {err?.response?.statusText && <h3>There was a {`${err.response.status}`} error: {`${err.response.statusText}`}</h3>}
-                {/*For when there isn't a network error but there is no data*/}
+                        {err?.response?.statusText && <h3>There was a {`${err.response.status}`} error: {`${err.response.statusText}`}</h3>}
+                        {/*For when there isn't a network error but there is no data*/}
 
-                {err?.message && !err?.response?.status && <PeepsNotFound message={err.message} />}
+                        {err?.message && !err?.response?.status && <PeepsNotFound message={err.message} />}
 
-                {/* ^This is for a network error  */}
-                {peeps?.length > 0 && peepsComponents}
+                        {/* ^This is for a network error  */}
 
+                        {peeps?.length > 0 && peepsComponents}
+                    </div>
+                </div>
                 <form onSubmit={postPeep}>
                     <div className="form-group comment-form ">
 

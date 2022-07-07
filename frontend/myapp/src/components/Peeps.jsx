@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment';
+
+
 const Peeps = ({ peep }) => {
 
     const { username, date, text } = peep;
@@ -9,7 +11,7 @@ const Peeps = ({ peep }) => {
 
     return (
         <>
-            <div className='card mb-2'> {/* col-10 col-sm-6 col-md-8 col-lg-12*/}
+            <div className='card mb-2 container col-sm-8'> {/* col-10 col-sm-6 col-md-8 col-lg-12*/}
 
                 <div className="card-body border border-success border-4">
                     <h5 className="card-title ">{username}</h5>
