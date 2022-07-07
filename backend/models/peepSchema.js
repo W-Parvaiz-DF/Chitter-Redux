@@ -8,6 +8,4 @@ const peepSchema = new mongoose.Schema({
 })
 
 
-const Peep = mongoose.model('Peep', peepSchema);
-
-export default Peep;
+export default mongoose.model('Peep', peepSchema);
