@@ -1,4 +1,3 @@
-
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
@@ -11,7 +10,6 @@ import Role from './models/roleSchema.js';
 
 import { router as peepRouter } from './routes/peeps.js';
 import userRouter from './routes/user.routes.js';
-import authRouter from './routes/auth.routes.js';
 
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
