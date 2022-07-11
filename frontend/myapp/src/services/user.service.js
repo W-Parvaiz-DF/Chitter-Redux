@@ -1,4 +1,4 @@
-//might not need this file tbh
+//file currently not needed but might make things easier later
 
 import axios from "axios";
 import authHeader from './auth-header';

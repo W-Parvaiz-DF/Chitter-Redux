@@ -6,9 +6,13 @@ import PeepsNotFound from './PeepsNotFound';
 import PeepModel from '../utils/PeepModel';
 import PostedModal from './PostedModal';
 
-const Home = () => {
+import authHeader from '../services/auth-header';
 
-    const user = "CurrentUser" //just a placeholder until we get a login system
+
+
+const Home = ({ currentUser }) => {
+
+    const username = currentUser ? currentUser.username : 'Guest' //should work
 
 
     const [newText, setNewText] = useState('');
@@ -22,7 +26,7 @@ const Home = () => {
     const getPeeps = async () => {
 
         try {
-            const res = await axios.get('http://localhost:4000');
+            const res = await axios.get('http://localhost:4000/user', { headers: authHeader() });
             setPeeps(res?.data);
             console.log(peeps)
         }
@@ -54,7 +58,7 @@ const Home = () => {
 
         e.preventDefault();
 
-        const postPeep = new PeepModel(user, new Date(Date.now()), newText);
+        const postPeep = new PeepModel(username, new Date(Date.now()), newText);
         const res = await axios.post(`http://localhost:4000`, postPeep);
 
         setMessage(res.data.message);

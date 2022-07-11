@@ -11,6 +11,8 @@ const required = value => {
     }
 };
 
+//functions for registering
+
 const validEmail = value => {
     if (!isEmail(value)) {
         return (
