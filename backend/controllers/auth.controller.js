@@ -1,4 +1,4 @@
-import Jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 import { validationResult } from "express-validator";
@@ -6,6 +6,9 @@ import Role from "../models/roleSchema.js"; //will be used in signup function
 import User from "../models/userSchema.js"
 
 //sign-up function will be written here when adding that part currently leaving out for simplicity
+
+
+
 
 
 

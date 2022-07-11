@@ -60,8 +60,6 @@ const initial = () => {
 
 
 
-
-
 app.use('/', peepRouter);
 app.use('/', userRouter);
 app.use('/', authRouter)

@@ -6,6 +6,7 @@ import { body } from 'express-validator';
 import signingFunctions from '../controllers/auth.controller.js';
 
 const { signin } = signingFunctions; //include sign up here
+
 // const { verifySignUp } = middlewareConfig;
 
 

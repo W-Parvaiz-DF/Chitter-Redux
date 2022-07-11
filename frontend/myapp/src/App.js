@@ -15,7 +15,6 @@ function App() {
         <Home />
         {/* <Footer /> */}
 
-        {/* <PostedModal message="Hello" handleClose={() => console.log("fhhfdkjhfd")} /> */}
 
 
       </div>
