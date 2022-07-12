@@ -1,18 +1,34 @@
 import logo from '../../images/chitterlogo.jpg'
 import './Login.css'
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import AuthService from '../../services/auth.service';
-import ValidationServiceHelpers from '../../services/validation.serviceHelpers';
+
 import { useNavigate } from 'react-router-dom';
 
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 
-// might need to add this somewhere col-4 col-sm-6 col-md-8 col-lg-12
+//import ValidationServiceHelpers from '../../services/validation.serviceHelpers'; -had to remove since react-validator isn't working
 
-const Login = () => {
+
+//import Form from '';
+
+// import { Form } from 'react-validation';#
+// import { Form }  from 'react-validation';
+// import { Input } from "react-validation";
+// import { CheckButton } from "react-validation";
+
+//the above doesn't work, react-validator is several-years old and not recommended
+
+
+
+const Login = ({ setCurrentUser }) => {
+
+
+    useEffect(() => {
+        localStorage.clear()
+        setCurrentUser(null)
+    }, [])
+
 
     const form = useRef();
     const checkBtn = useRef();
@@ -41,29 +57,29 @@ const Login = () => {
         setMessage(``);
         setLoading(true);
 
-        form.current.validateAll();
+        //form.current.validateAll();
 
-        if (checkBtn.current.context._errors.length === 0) {
-            const login = await AuthService.login(email, password);
-            if (localStorage.getItem("user")) {
-                navigate(`/home`);
-                // window.location.reload();
-            }
-            else {
-                console.dir(login);
-                setMessage(login.error);
-                setLoading(false);
-            }
+        // if (checkBtn.current.context._errors.length === 0) {
+        const login = await AuthService.login(email, password);
+        if (localStorage.getItem("user")) {
+            navigate(`/home`);
+            window.location.reload();
         }
         else {
+            console.dir(login);
+            setMessage(login.error);
             setLoading(false);
         }
+        // }
+        // else {
+        //     setLoading(false);
+        // }
     }
 
     return (
         <><meta name="viewport" content="width=device-width,  initial-scale=1.0"></meta>
             <div className=" text-center loginFull">
-                <div className="col-5">
+                <div className="col-5 loginLeft">
                     <h1> Welcome to Chitter!</h1>
                     <img alt="Chitter logo" src={logo} className="logo"></img>
                 </div>
@@ -77,28 +93,32 @@ const Login = () => {
                         <h1>Login</h1>
 
 
-                        <Form onSubmit={handleLogin} ref={form}>
+                        <form onSubmit={handleLogin} ref={form}>
                             <div className="form-group login-form">
                                 <label htmlFor="email">Email</label>
-                                <Input
+                                <input
                                     type="text"
                                     className="form-control"
                                     value={email}
                                     onChange={onChangeEmail}
-                                    validations={[ValidationServiceHelpers.required]}
-                                    name="email" />
+                                    // validations={[ValidationServiceHelpers.required]}
+                                    name="email"
+                                    required
+                                />
                             </div >
 
                             <div>&nbsp;</div>
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
-                                <Input
+                                <input
                                     type="password"
                                     value={password}
                                     onChange={onChangePassword}
-                                    validations={[ValidationServiceHelpers.required]}
+                                    // validations={[ValidationServiceHelpers.required]}
                                     className="form-control"
-                                    name="password" />
+                                    name="password"
+                                    required
+                                />
                             </div>
 
                             <div>&nbsp;</div>
@@ -107,7 +127,8 @@ const Login = () => {
                                 <button
                                     className="btn btn-success btn-block"
                                     disabled={loading}
-                                    type="submit">
+                                    type="submit"
+                                    ref={checkBtn}>
                                     {loading && (
                                         <span className="spinner-border spinner-border-sm"></span>
                                     )}
@@ -122,10 +143,11 @@ const Login = () => {
                                     </div>
                                 </div>
                             )}
-                            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+
+                            {/* <CheckButton style={{ display: "none" }} ref={checkBtn} /> */}
 
 
-                        </Form>
+                        </form>
                     </div>
                 </div>
 

@@ -12,8 +12,11 @@ import authHeader from '../services/auth-header';
 
 const Home = ({ currentUser }) => {
 
-    const username = currentUser ? currentUser.username : 'Guest' //should work
+    console.log(currentUser)
 
+    const username = currentUser?.username ? currentUser.username : 'Guest' //should work
+
+    console.log(`Home.jsx line 17 username: ${username}`)
 
     const [newText, setNewText] = useState('');
     const [postedStatus, setPostedStatus] = useState(false)
@@ -28,7 +31,7 @@ const Home = ({ currentUser }) => {
         try {
             const res = await axios.get('http://localhost:4000/user', { headers: authHeader() });
             setPeeps(res?.data);
-            console.log(peeps)
+            //console.log(peeps)
         }
         catch (err) {
             console.log(err);

@@ -8,8 +8,6 @@ const PostedModal = ({ message, handleClose }) => {
 
 
     const showHideClassName = message ? `modal display-block` : `modal display-none`;
-    console.log(message)
-    console.log(showHideClassName)
 
     return (
         <>

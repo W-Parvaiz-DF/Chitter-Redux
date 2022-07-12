@@ -18,7 +18,7 @@ function App() {
 
 
   //const [showAdminBoard, setShowAdminBoard] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -28,6 +28,8 @@ function App() {
       //setShowAdminBoard(user.roles.includes(`ROLE_ADMIN`));
     }
 
+    console.log(currentUser)
+
   }, []);
 
   const logOut = () => {
@@ -35,14 +37,12 @@ function App() {
   }
 
 
-
-
   return (
 
     <Router>
       {currentUser && <Header currentUser={currentUser} logOut={logOut} />}
       <Routes>
-        <Route path='/' element={<Login />} />
+        <Route path='/' element={<Login setCurrentUser={setCurrentUser} />} />
         <Route path='/home' element={<Home currentUser={currentUser} />} />
       </Routes>
     </Router>
